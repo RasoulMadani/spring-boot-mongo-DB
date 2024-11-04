@@ -1,5 +1,6 @@
 package ir.maktabsharif.controller;
 
+import ir.maktabsharif.entity.Address;
 import ir.maktabsharif.entity.User;
 import ir.maktabsharif.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,16 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable String id) {
         userService.deleteUser(id);
+    }
+
+//    {
+//            "street": "123 Main St",
+//            "city": "New York",
+//            "state": "NY",
+//            "postalCode": "10001"
+//    }
+    @PutMapping("/{userId}/address")
+    public User updateAddress(@PathVariable String userId, @RequestBody Address address) {
+        return userService.updateAddress(userId, address);
     }
 }

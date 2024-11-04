@@ -18,12 +18,18 @@ public class User {
     private String name;
     private String email;
     private List<String> orderIds;
+    private Address address;
     public User() {
     }
 
     public User(String name, String email) {
         this.name = name;
         this.email = email;
+    }
+    public User(String name, String email,Address address) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
     }
 
 }
