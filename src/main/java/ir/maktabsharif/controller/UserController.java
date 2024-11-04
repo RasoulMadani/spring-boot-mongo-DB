@@ -5,9 +5,12 @@ import ir.maktabsharif.entity.User;
 import ir.maktabsharif.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -47,4 +50,15 @@ public class UserController {
     public User updateAddress(@PathVariable String userId, @RequestBody Address address) {
         return userService.updateAddress(userId, address);
     }
+    @GetMapping("/{userId}/address")
+    public ResponseEntity<Address> getUserAddress(@PathVariable String userId) {
+       Address address = userService.getAddressByUserId(userId);
+        if (address != null) {
+            return ResponseEntity.ok(address);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+
 }

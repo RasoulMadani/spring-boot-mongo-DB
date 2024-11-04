@@ -42,4 +42,12 @@ public class UserService {
             throw new RuntimeException("User not found with id: " + userId);
         }
     }
+    public Address getAddressByUserId(String userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            return userOptional.get().getAddress();
+        } else {
+            throw new RuntimeException("User not found with id: " + userId);
+        }
+    }
 }
